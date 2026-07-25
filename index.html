@@ -16,6 +16,8 @@
 <body>
     <!-- Logo institucional -->
     <img src="logo.png" alt="Logo UCI Honorio Delgado" width="200">
+
+    <!-- Título -->
     <h1>Calculadora de Soluciones Hipertónicas</h1>
     <p>Unidad de Cuidados Intensivos – Hospital Honorio Delgado</p>
 
@@ -40,6 +42,10 @@
             <td>Volumen NaCl 20 % (ml):</td>
             <td class="result" id="nacl"></td>
         </tr>
+        <tr>
+            <td>Ampollas de NaCl 20 % (20 ml c/u):</td>
+            <td class="result" id="ampollas"></td>
+        </tr>
     </table>
 
     <!-- Script de cálculo -->
@@ -53,8 +59,14 @@
             }
             let Vnacl = (V*C - 0.9*V)/(20 - 0.9);
             let Vsf = V - Vnacl;
+
+            // cálculo de ampollas
+            let ampollas = Math.floor(Vnacl / 20); // número entero de ampollas
+            let resto = (Vnacl % 20).toFixed(1);   // volumen sobrante
+
             document.getElementById('sf').innerText = Vsf.toFixed(1) + " ml";
             document.getElementById('nacl').innerText = Vnacl.toFixed(1) + " ml";
+            document.getElementById('ampollas').innerText = ampollas + " ampollas y " + resto + " ml";
         }
     </script>
 </body>
